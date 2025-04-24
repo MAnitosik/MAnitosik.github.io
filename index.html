@@ -1,117 +1,176 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Словарь аббревиатур</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background: #1a1a1a;
-            color: #ffffff;
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
         }
-        
-        .header {
-            background: #2d2d2d;
-            padding: 2rem 0;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
         }
-        
-        .search-box {
-            max-width: 600px;
-            margin: 0 auto 2rem;
+        main {
+            padding: 2rem;
         }
-        
-        .table {
-            color: #ffffff;
-            background: #2d2d2d;
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 2rem;
             border-radius: 8px;
-            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        
-        .table thead {
-            background: #3d3d3d;
+        h1 {
+            text-align: center;
+            color: #4CAF50;
         }
-        
-        .table tbody tr:hover {
-            background: #3d3d3d;
-            transition: background 0.3s ease;
+        .search-box {
+            text-align: center;
+            margin-bottom: 2rem;
         }
-        
-        .badge {
-            background: #4CAF50;
-            font-weight: 500;
+        .search-box input {
+            padding: 0.5rem;
+            width: calc(100% - 22px);
+            border-radius: 4px;
+            border: 1px solid #ccc;
         }
-        
-        .card {
-            background: #2d2d2d;
-            border: 1px solid #3d3d3d;
+        .abbreviation-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .abbreviation-list li {
+            margin-bottom: 1rem;
+            display: none; /* Hidden by default */
+        }
+        .abbreviation-list li.visible {
+            display: block;
+        }
+        .abbreviation-list li:nth-child(odd) {
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .abbreviation-list li:nth-child(even) {
+            background-color: #e9e9e9;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .abbreviation {
+            font-weight: bold;
+        }
+        .meaning {
+            font-style: italic;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #4CAF50;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container text-center">
-            <h1 class="mb-3">📚 Словарь аббревиатур. Беседин Никита 9А</h1>
-            <p class="text-muted">популярные сокращения на русском и английском</p>
-            <div class="search-box">
-                <input type="text" class="form-control bg-dark text-light" id="searchInput" 
-                       placeholder="Поиск аббревиатур...">
-            </div>
-        </div>
+    <header>
+        <h1>Словарь аббревиатур<</h1>
     </header>
-
-    <div class="container">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Аббревиатура</th>
-                    <th scope="col">Значение</th>
-                    <th scope="col">Язык</th>
-                </tr>
-            </thead>
-            <tbody id="abbreviationsTable">
-                <!-- Английские аббревиатуры -->
-                <tr><td>LOL</td><td>Laughing Out Loud (Громко смеюсь)</td><td><span class="badge">EN</span></td></tr>
-                <tr><td>BRB</td><td>Be Right Back (Скоро вернусь)</td><td><span class="badge">EN</span></td></tr>
-                <tr><td>AFK</td><td>Away From Keyboard (Отошёл от компьютера)</td><td><span class="badge">EN</span></td></tr>
-                <tr><td>IMO</td><td>In My Opinion (По моему мнению)</td><td><span class="badge">EN</span></td></tr>
-                <tr><td>TL;DR</td><td>Too Long; Didn't Read (Слишком длинно, не читал)</td><td><span class="badge">EN</span></td></tr>
-                <tr><td>IRL</td><td>In Real Life (В реальной жизни)</td><td><span class="badge">EN</span></td></tr>
-                <tr><td>NSFW</td><td>Not Safe For Work (Небезопасно для работы)</td><td><span class="badge">EN</span></td></tr>
-                <tr><td>AMA</td><td>Ask Me Anything (Спрашивайте что угодно)</td><td><span class="badge">EN</span></td></tr>
-                <tr><td>DM</td><td>Direct Message (Личное сообщение)</td><td><span class="badge">EN</span></td></tr>
-                <tr><td>ETA</td><td>Estimated Time of Arrival (Примерное время прибытия)</td><td><span class="badge">EN</span></td></tr>
-                <!-- Русские аббревиатуры -->
-                <tr><td>ИМХО</td><td>Имею мнение, хрен оспоришь</td><td><span class="badge">RU</span></td></tr>
-                <tr><td>СПБ</td><td>Спасибо-пожалуйста (сарказм)</td><td><span class="badge">RU</span></td></tr>
-                <tr><td>ЧСВ</td><td>Чувство собственной важности</td><td><span class="badge">RU</span></td></tr>
-                <tr><td>ПЖ</td><td>Пожалуйста (в чатах)</td><td><span class="badge">RU</span></td></tr>
-                <tr><td>ХЗ</td><td>Хрен знает</td><td><span class="badge">RU</span></td></tr>
-                <tr><td>ОМГ</td><td>О мой Бог (русский вариант OMG)</td><td><span class="badge">RU</span></td></tr>
-                <tr><td>КМК</td><td>Как мне кажется</td><td><span class="badge">RU</span></td></tr>
-                <tr><td>ТП</td><td>Транспортное предприятие/Тупой пользователь</td><td><span class="badge">RU</span></td></tr>
-                <tr><td>АУЕ</td><td>Арестантский уклад един</td><td><span class="badge">RU</span></td></tr>
-                <tr><td>ГГ</td><td>Хорошая игра (от GG - Good Game)</td><td><span class="badge">RU</span></td></tr>
-                <!-- Дополнено до 100 записей (примеры сокращены для ответа) -->
-            </tbody>
-        </table>
-    </div>
-
+    <main>
+        <div class="container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search for an abbreviation...">
+            </div>
+            <h2>Английские аббревиатуры</h2>
+            <ul class="abbreviation-list" id="englishList">
+                <li class="visible"><span class="abbreviation">LOL</span> - <span class="meaning">Laugh Out Loud</span></li>
+                <li class="visible"><span class="abbreviation">BRB</span> - <span class="meaning">Be Right Back</span></li>
+                <li class="visible"><span class="abbreviation">IDK</span> - <span class="meaning">I Don't Know</span></li>
+                <li class="visible"><span class="abbreviation">BTW</span> - <span class="meaning">By The Way</span></li>
+                <li class="visible"><span class="abbreviation">OMG</span> - <span class="meaning">Oh My God</span></li>
+                <li class="visible"><span class="abbreviation">TTYL</span> - <span class="meaning">Talk To You Later</span></li>
+                <li class="visible"><span class="abbreviation">IMO</span> - <span class="meaning">In My Opinion</span></li>
+                <li class="visible"><span class="abbreviation">AFK</span> - <span class="meaning">Away From Keyboard</span></li>
+                <li class="visible"><span class="abbreviation">IRL</span> - <span class="meaning">In Real Life</span></li>
+                <li class="visible"><span class="abbreviation">BFF</span> - <span class="meaning">Best Friends Forever</span></li>
+                <li class="visible"><span class="abbreviation">FTW</span> - <span class="meaning">For The Win</span></li>
+                <li class="visible"><span class="abbreviation">JK</span> - <span class="meaning">Just Kidding</span></li>
+                <li class="visible"><span class="abbreviation">NP</span> - <span class="meaning">No Problem</span></li>
+                <li class="visible"><span class="abbreviation">FYI</span> - <span class="meaning">For Your Information</span></li>
+                <li class="visible"><span class="abbreviation">DIY</span> - <span class="meaning">Do It Yourself</span></li>
+                <li class="visible"><span class="abbreviation">TMI</span> - <span class="meaning">Too Much Information</span></li>
+                <li class="visible"><span class="abbreviation">ETA</span> - <span class="meaning">Estimated Time of Arrival</span></li>
+                <li class="visible"><span class="abbreviation">ATM</span> - <span class="meaning">At The Moment</span></li>
+                <li class="visible"><span class="abbreviation">RSVP</span> - <span class="meaning">Répondez S'il Vous Plaît (Please Respond)</span></li>
+                <li class="visible"><span class="abbreviation">ASAP</span> - <span class="meaning">As Soon As Possible</span></li>
+                <li class="visible"><span class="abbreviation">FAQ</span> - <span class="meaning">Frequently Asked Questions</span></li>
+                <li class="visible"><span class="abbreviation">TGIF</span> - <span class="meaning">Thank God It's Friday</span></li>
+                <li class="visible"><span class="abbreviation">YOLO</span> - <span class="meaning">You Only Live Once</span></li>
+                <li class="visible"><span class="abbreviation">FOMO</span> - <span class="meaning">Fear Of Missing Out</span></li>
+                <li class="visible"><span class="abbreviation">GOAT</span> - <span class="meaning">Greatest Of All Time</span></li>
+            </ul>
+            <h2>Русские аббревиатуры</h2>
+            <ul class="abbreviation-list" id="russianList">
+                <li class="visible"><span class="abbreviation">ЧТД</span> - <span class="meaning">Что Делаешь</span></li>
+                <li class="visible"><span class="abbreviation">КТХ</span> - <span class="meaning">Кто Такой</span></li>
+                <li class="visible"><span class="abbreviation">НЗ</span> - <span class="meaning">Не Знаю</span></li>
+                <li class="visible"><span class="abbreviation">Ща</span> - <span class="meaning">Сейчас</span></li>
+                <li class="visible"><span class="abbreviation">Пжл</span> - <span class="meaning">Пожалуйста</span></li>
+                <li class="visible"><span class="abbreviation">Спс</span> - <span class="meaning">Спасибо</span></li>
+                <li class="visible"><span class="abbreviation">Пвт</span> - <span class="meaning">Пока</span></li>
+                <li class="visible"><span class="abbreviation">ДД</span> - <span class="meaning">Доброе Дело</span></li>
+                <li class="visible"><span class="abbreviation">Кст</span> - <span class="meaning">Кстати</span></li>
+                <li class="visible"><span class="abbreviation">ИМХО</span> - <span class="meaning">Извините Мое Хулиганское Обращение</span></li>
+                <li class="visible"><span class="abbreviation">ЛОЛ</span> - <span class="meaning">Смеяться Вслух</span></li>
+                <li class="visible"><span class="abbreviation">МК</span> - <span class="meaning">Мой Кот</span></li>
+                <li class="visible"><span class="abbreviation">ВНИМ</span> - <span class="meaning">Внимание</span></li>
+                <li class="visible"><span class="abbreviation">ПРВД</span> - <span class="meaning">Правда</span></li>
+                <li class="visible"><span class="abbreviation">СЛН</span> - <span class="meaning">Сейчас Лягу Нах</span></li>
+                <li class="visible"><span class="abbreviation">ФФ</span> - <span class="meaning">Фейсбук Френд</span></li>
+                <li class="visible"><span class="abbreviation">В5</span> - <span class="meaning">Всегда Вместе</span></li>
+                <li class="visible"><span class="abbreviation">КРЧ</span> - <span class="meaning">Короче</span></li>
+                <li class="visible"><span class="abbreviation">НРВ</span> - <span class="meaning">Нервы</span></li>
+                <li class="visible"><span class="abbreviation">ПЖЛСТ</span> - <span class="meaning">Пожалуйста</span></li>
+                <li class="visible"><span class="abbreviation">СПСБ</span> - <span class="meaning">Спасибо Большое</span></li>
+                <li class="visible"><span class="abbreviation">ЧЗХ</span> - <span class="meaning">Что За Хрень</span></li>
+                <li class="visible"><span class="abbreviation">ЩЗН</span> - <span class="meaning">Щас Звоню Нах</span></li>
+                <li class="visible"><span class="abbreviation">ВДХ</span> - <span class="meaning">Все Дома Хрень</span></li>
+                <li class="visible"><span class="abbreviation">НФН</span> - <span class="meaning">Не Фото Нах</span></li>
+                <li class="visible"><span class="abbreviation">ЧТК</span> - <span class="meaning">Что Такое Кот</span></li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; Беседин Никита 9А</p>
+    </footer>
     <script>
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const rows = document.querySelectorAll('#abbreviationsTable tr');
-            
-            rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                row.style.display = text.includes(searchTerm) ? '' : 'none';
-            });
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            filterAbbreviations(query, 'englishList');
+            filterAbbreviations(query, 'russianList');
         });
+
+        function filterAbbreviations(query, listId) {
+            const list = document.getElementById(listId);
+            const items = list.getElementsByTagName('li');
+            for (let item of items) {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    item.classList.add('visible');
+                } else {
+                    item.classList.remove('visible');
+                }
+            }
+        }
     </script>
 </body>
 </html>
